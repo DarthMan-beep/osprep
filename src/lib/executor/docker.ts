@@ -23,6 +23,8 @@ export interface RunResult {
 export interface RunOptions {
   image: string;
   cmd: string[];
+  /** Override the image ENTRYPOINT (e.g. to run arbitrary bash, not `grade`). */
+  entrypoint?: string[];
   /** Host directory whose contents are copied into /work before start. */
   workDir: string;
   timeoutMs?: number;
@@ -72,6 +74,7 @@ export async function runContainer(opts: RunOptions): Promise<RunResult> {
 
   const container = await docker.createContainer({
     Image: opts.image,
+    ...(opts.entrypoint ? { Entrypoint: opts.entrypoint } : {}),
     Cmd: opts.cmd,
     Tty: true, // raw, un-multiplexed output
     WorkingDir: "/work",
@@ -104,14 +107,29 @@ export async function runContainer(opts: RunOptions): Promise<RunResult> {
       await container.kill().catch(() => {});
     }
 
-    const logBuf = (await container.logs({
-      stdout: true,
-      stderr: true,
-      follow: false,
-    })) as unknown as Buffer;
+    // Collect output from a log stream. The buffered `logs()` overload can
+    // occasionally resolve to a non-Buffer for fast, tiny-output containers,
+    // so we stream and concatenate instead (Tty:true ⇒ raw, un-multiplexed).
+    const output = await new Promise<string>((resolve) => {
+      container.logs(
+        { follow: true, stdout: true, stderr: true },
+        (err, stream) => {
+          if (err || !stream) {
+            resolve("");
+            return;
+          }
+          const chunks: Buffer[] = [];
+          stream.on("data", (c: Buffer) => chunks.push(c));
+          const done = () => resolve(Buffer.concat(chunks).toString("utf8"));
+          stream.on("end", done);
+          stream.on("close", done);
+          stream.on("error", done);
+        },
+      );
+    });
 
     return {
-      output: logBuf.toString("utf8"),
+      output,
       statusCode: result.StatusCode,
       timedOut,
     };

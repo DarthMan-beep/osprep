@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { loadExercise } from "@/lib/exercises";
 import { readEntry } from "@/lib/progress";
 import { getLocale } from "@/lib/locale.server";
+import { renderMarkdown } from "@/lib/markdown";
 import { Workbench } from "@/components/Workbench";
 
 export const dynamic = "force-dynamic";
@@ -23,10 +24,12 @@ export default async function ExercisePage({
   }
 
   const saved = await readEntry(exerciseId);
+  const problemHtml = await renderMarkdown(exercise.problemMarkdown);
 
   return (
     <Workbench
       exercise={exercise}
+      problemHtml={problemHtml}
       savedCode={saved?.code}
       alreadySolved={saved?.solved}
       locale={locale}

@@ -38,6 +38,12 @@ export default async function RootLayout({
           <Link href="/" className="font-semibold tracking-tight">
             OS<span className="text-emerald-400">Prep</span>
           </Link>
+          <Link
+            href="/playground"
+            className="text-sm text-neutral-400 transition hover:text-emerald-400"
+          >
+            {t(locale, "nav.playground")}
+          </Link>
           <span className="hidden text-xs text-neutral-500 sm:inline">
             {t(locale, "app.tagline")}
           </span>

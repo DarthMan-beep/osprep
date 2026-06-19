@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import type { Exercise, GradeResult } from "@/lib/types";
 import { t, topicLabel, type Locale } from "@/lib/i18n";
 import { ResultsPanel } from "./ResultsPanel";
@@ -18,16 +16,18 @@ type SaveState = "idle" | "saving" | "saved";
 
 export function Workbench({
   exercise,
+  problemHtml,
   savedCode,
   alreadySolved,
   locale = "en",
 }: {
   exercise: Exercise;
+  problemHtml: string;
   savedCode?: string;
   alreadySolved?: boolean;
   locale?: Locale;
 }) {
-  const { manifest, problemMarkdown, starterFiles } = exercise;
+  const { manifest, starterFiles } = exercise;
   const starter =
     starterFiles.find((f) => f.name === manifest.entrypoint)?.content ??
     starterFiles[0]?.content ??
@@ -136,11 +136,10 @@ export function Workbench({
             {manifest.points} {t(locale, "wb.pts")}
           </span>
         </div>
-        <article className="prose prose-invert prose-sm max-w-none prose-pre:bg-neutral-900 prose-code:text-amber-300">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {problemMarkdown}
-          </ReactMarkdown>
-        </article>
+        <article
+          className="prose prose-invert prose-sm max-w-none prose-code:text-amber-300 prose-code:before:content-none prose-code:after:content-none"
+          dangerouslySetInnerHTML={{ __html: problemHtml }}
+        />
       </section>
 
       {/* Editor + results */}

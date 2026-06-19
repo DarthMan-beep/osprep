@@ -25,11 +25,19 @@ export default async function Home() {
     <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-10">
       <h1 className="text-2xl font-bold">{t(locale, "home.title")}</h1>
       <p className="mt-1 text-neutral-400">{t(locale, "home.subtitle")}</p>
-      <p className="mt-3 inline-block rounded bg-neutral-900 px-3 py-1 text-sm text-neutral-300">
-        {t(locale, "home.solved")}{" "}
-        <span className="font-semibold text-emerald-400">{solvedCount}</span> /{" "}
-        {exercises.length}
-      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <span className="inline-block rounded bg-neutral-900 px-3 py-1 text-sm text-neutral-300">
+          {t(locale, "home.solved")}{" "}
+          <span className="font-semibold text-emerald-400">{solvedCount}</span> /{" "}
+          {exercises.length}
+        </span>
+        <Link
+          href="/playground"
+          className="inline-block rounded border border-emerald-800 bg-emerald-950/40 px-3 py-1 text-sm text-emerald-300 transition hover:border-emerald-600"
+        >
+          🛝 {t(locale, "home.playground")}
+        </Link>
+      </div>
 
       {guides.length > 0 && (
         <section className="mt-8">

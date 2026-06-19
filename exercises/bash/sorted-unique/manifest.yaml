@@ -1,6 +1,6 @@
-id: unix/sorted-unique
+id: bash/sorted-unique
 title: Sorted unique numbers
-topic: unix
+topic: bash
 kind: bash
 difficulty: 2
 estimatedMinutes: 8
