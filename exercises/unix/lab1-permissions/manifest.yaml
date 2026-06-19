@@ -1,0 +1,14 @@
+id: unix/lab1-permissions
+title: "Lab 1: set file permissions"
+topic: unix
+kind: bash
+difficulty: 1
+estimatedMinutes: 4
+points: 10
+entrypoint: command.sh
+tags:
+  - chmod
+  - permissions
+summary: Change a file's permissions so only the owner and group can read and write it.
+title_mk: "Лаб 1: постави дозволи на датотека"
+summary_mk: "Промени ги дозволите на датотека така што само сопственикот и групата можат да ја читаат и запишуваат."

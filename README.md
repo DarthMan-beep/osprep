@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OSPrep — Operating Systems practical exam trainer
 
-## Getting Started
+A self-hosted study app for the FINKI **Operating Systems practical exam**. Read the
+study guides, then solve exercises in a **real sandbox**: you write code in the browser,
+click **Run & Grade**, and it executes inside a throwaway Docker container and is checked
+against automated tests. Available in **English and Macedonian** (toggle top-right).
 
-First, run the development server:
+Covers: **Unix commands**, **Bash scripting** (Docker and Java synchronization are on the
+roadmap).
+
+---
+
+## Quick start
+
+### Prerequisites
+
+- **Node.js 20+** and npm — <https://nodejs.org>
+- **Docker Desktop**, installed **and running** — <https://www.docker.com/products/docker-desktop/>
+  (on Windows, enable the WSL2 backend). The grader needs Docker to run your code.
+- **git**
+
+### Steps
 
 ```bash
+# 1. clone
+git clone <REPO_URL>
+cd osprep
+
+# 2. install dependencies
+npm install
+
+# 3. start Docker Desktop (make sure it is running), then build the sandbox image
+#    Linux/macOS/Git-Bash/WSL:
+bash docker/build-images.sh
+#    or directly (any OS):
+docker build -t osprep-bash:latest ./docker/bash
+
+# 4. run the app
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **<http://localhost:3000>**. Pick an exercise, write your solution, and press
+**▶ Run & Grade**. Use the **EN / MK** switch in the top-right to change language.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> If grading shows *"Image osprep-bash:latest not found"* you skipped step 3, and
+> *"Docker daemon is not reachable"* means Docker Desktop isn't running.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## How it works
 
-To learn more about Next.js, take a look at the following resources:
+```
+Browser (Monaco editor)
+   │  POST /api/run { id, files }
+   ▼
+Next.js route handler  ──►  Docker executor (dockerode)
+                                 │  copy your files into an ephemeral container
+                                 │  run the pinned sandbox image (no network, capped RAM)
+                                 │  capture output, parse, score
+                                 ▼
+                            graded result  ──►  results panel
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Bash/Unix** exercises are checked with **`shellcheck`** (lint/syntax) + **`bats`**
+  (behavioural tests). Both must pass for a green result.
+- Reference solutions and tests live **server-side only** — they're never sent to the
+  browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Your progress is local and private
 
-## Deploy on Vercel
+Solved status and your saved code live in **`userdata/progress.json`**, which is
+**git-ignored**. It is **per-machine** and never committed — so when you clone this repo
+you start with a clean slate (0 solved), and your work is never pushed back. The **reset**
+button on an exercise wipes its saved code and solved status.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/            # pages (home, /exercise/[...id], /guide/[slug]) + API routes
+  components/     # Workbench (editor), ResultsPanel, LocaleToggle
+  lib/            # exercises, guides, progress, docker executor, i18n
+exercises/<topic>/<slug>/
+  manifest.yaml   # id, title, difficulty, points, entrypoint, tags (+ *_mk, lint knobs)
+  PROBLEM.md      # problem statement (+ PROBLEM.mk.md for Macedonian)
+  starter/        # files you start with
+  solution/       # reference answer (server-only)
+  tests/          # bats checker
+content/guides/   # study guides (<slug>.md + <slug>.mk.md)
+docker/bash/      # the osprep-bash sandbox image (alpine + bash + shellcheck + bats)
+```
+
+## Adding a bash exercise
+
+1. Create `exercises/<topic>/<slug>/` with `manifest.yaml`, `PROBLEM.md`, `starter/`,
+   `solution/`, and `tests/*.bats`.
+2. It appears on the home page automatically.
+
+> **bats tip:** test bodies run with errexit-like behaviour — `var=$(cmd-that-exits-nonzero)`
+> fails the test; use `run` or append `|| true` when a non-zero exit is expected.
+
+## Roadmap
+
+- [ ] Docker exercises (`osprep-docker` image: build Dockerfile/compose + run assertions)
+- [ ] Java synchronization (`osprep-java`: JUnit + concurrency stress / deadlock timeout)
+- [ ] Timed exam simulator (multi-topic, scoring, review)

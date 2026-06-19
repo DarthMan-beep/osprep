@@ -1,0 +1,15 @@
+id: unix/lab1-awk-filter
+title: "Lab 1: filter and project with awk"
+topic: unix
+kind: bash
+difficulty: 3
+estimatedMinutes: 8
+points: 10
+entrypoint: command.sh
+tags:
+  - awk
+  - regex
+  - filtering
+summary: Use awk to select rows by a regex on one field and a numeric test on another, then print chosen columns.
+title_mk: "Лаб 1: филтрирање и проекција со awk"
+summary_mk: "Користи awk за да избереш редови преку регуларен израз на едно поле и нумеричка проверка на друго, па испечати избрани колони."

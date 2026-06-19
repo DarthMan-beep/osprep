@@ -1,0 +1,16 @@
+id: unix/sorted-unique
+title: Sorted unique numbers
+topic: unix
+kind: bash
+difficulty: 2
+estimatedMinutes: 8
+points: 10
+entrypoint: process.sh
+tags:
+  - sort
+  - uniq
+  - redirection
+  - pipes
+summary: Build a sort | uniq pipeline that writes unique numbers in descending order to a file.
+title_mk: "Сортирани уникатни броеви"
+summary_mk: "Изградете sort | uniq цевка што запишува уникатни броеви во опаѓачки редослед во датотека."

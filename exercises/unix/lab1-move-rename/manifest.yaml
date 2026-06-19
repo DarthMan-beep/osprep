@@ -1,0 +1,13 @@
+id: unix/lab1-move-rename
+title: "Lab 1: move and rename a file"
+topic: unix
+kind: bash
+difficulty: 1
+estimatedMinutes: 4
+points: 10
+entrypoint: command.sh
+tags:
+  - mv
+summary: Move a file to another directory while renaming it, in a single command.
+title_mk: "Лаб 1: премести и преименувај датотека"
+summary_mk: "Премести датотека во друг директориум притоа преименувајќи ја, во една команда."

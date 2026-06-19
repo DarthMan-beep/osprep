@@ -1,0 +1,15 @@
+id: bash/classify-arg
+title: Classify an argument with case
+topic: bash
+kind: bash
+difficulty: 1
+estimatedMinutes: 6
+points: 10
+entrypoint: classify.sh
+tags:
+  - case
+  - exit-codes
+  - stderr
+summary: Use a case statement to map 1/2/3 to words and reject anything else.
+title_mk: "Класификација на аргумент со case"
+summary_mk: "Користете case исказ за да мапирате 1/2/3 во зборови и да отфрлите сè друго."

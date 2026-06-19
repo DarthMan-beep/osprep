@@ -1,0 +1,17 @@
+id: unix/lab1-proc-count
+title: "Lab 1: count processes per user"
+topic: unix
+kind: bash
+difficulty: 3
+estimatedMinutes: 12
+points: 10
+entrypoint: command.sh
+tags:
+  - awk
+  - sort
+  - uniq
+  - pipes
+  - stdin
+summary: Build a pipeline over ps-aux-style stdin that counts processes per user, sorted descending.
+title_mk: "Лаб 1: изброј процеси по корисник"
+summary_mk: "Изгради цевковод над влез во стил на ps aux што брои процеси по корисник, подредени опаѓачки."

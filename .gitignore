@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OSPrep user progress (local, per-machine — never shared)
+/userdata/
+
+# Course source material (copyrighted lecture PDFs / pasted lab text) — not for distribution
+/source-materials/

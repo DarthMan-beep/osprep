@@ -1,0 +1,17 @@
+id: unix/lab1-count-inprogress
+title: "Lab 1: count unfinished quizzes from stdin"
+topic: unix
+kind: bash
+difficulty: 2
+estimatedMinutes: 6
+points: 10
+entrypoint: command.sh
+lint: relaxed
+tags:
+  - grep
+  - pipes
+  - wc
+  - stdin
+summary: From stdin, count students whose quiz on a given date is still in progress.
+title_mk: "Лаб 1: броење на недовршени квизови од stdin"
+summary_mk: "Од stdin, изброј ги студентите чиј квиз на даден датум сè уште е во тек."

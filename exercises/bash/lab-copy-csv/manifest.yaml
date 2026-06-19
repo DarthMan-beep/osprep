@@ -1,0 +1,16 @@
+id: bash/lab-copy-csv
+title: "Scripts lab: copy CSV files and report stats"
+topic: bash
+kind: bash
+difficulty: 4
+estimatedMinutes: 25
+points: 10
+entrypoint: script.sh
+tags:
+  - loops
+  - test-operators
+  - stat
+  - command-substitution
+summary: Copy .csv files matching filename/permission rules into copiedFiles/ and write a statistics report.
+title_mk: "Лабораторија за скрипти: копирање на CSV датотеки и извештај со статистика"
+summary_mk: "Копирај ги .csv датотеките што ги задоволуваат правилата за име/дозволи во copiedFiles/ и напиши извештај со статистика."

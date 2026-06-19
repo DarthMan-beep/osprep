@@ -1,0 +1,16 @@
+id: bash/file-sizes
+title: Categorize files by size
+topic: bash
+kind: bash
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: classify_sizes.sh
+tags:
+  - loops
+  - test-operators
+  - command-substitution
+  - conditionals
+summary: Loop over a directory's files and label each empty/small/medium/large by byte size.
+title_mk: "Категоризирање на датотеки по големина"
+summary_mk: "Поминете низ датотеките во директориум и означете ја секоја како empty/small/medium/large според големината во бајти."

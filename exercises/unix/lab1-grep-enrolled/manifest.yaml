@@ -1,0 +1,14 @@
+id: unix/lab1-grep-enrolled
+title: "Lab 1: filter by enrolment year"
+topic: unix
+kind: bash
+difficulty: 2
+estimatedMinutes: 5
+points: 10
+entrypoint: command.sh
+tags:
+  - grep
+  - regex
+summary: Use grep with an anchor to print only the students who enrolled in a given year.
+title_mk: "Лаб 1: филтрирај според година на запишување"
+summary_mk: "Користи grep со прицврстувач за да ги испечатиш само студентите што се запишале во дадена година."

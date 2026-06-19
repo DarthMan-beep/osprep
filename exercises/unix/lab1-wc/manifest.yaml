@@ -1,0 +1,13 @@
+id: unix/lab1-wc
+title: "Lab 1: count lines, words and characters"
+topic: unix
+kind: bash
+difficulty: 1
+estimatedMinutes: 3
+points: 10
+entrypoint: command.sh
+tags:
+  - wc
+summary: Report the number of lines, words and characters in a file.
+title_mk: "Лаб 1: броење на линии, зборови и знаци"
+summary_mk: "Пријавете го бројот на линии, зборови и знаци во датотека."

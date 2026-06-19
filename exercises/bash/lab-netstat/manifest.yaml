@@ -1,0 +1,16 @@
+id: bash/lab-netstat
+title: "Scripts lab: TCP connections per local IP"
+topic: bash
+kind: bash
+difficulty: 4
+estimatedMinutes: 20
+points: 10
+entrypoint: script.sh
+tags:
+  - awk
+  - sort
+  - pipes
+  - stdin
+summary: From netstat-style stdin, count TCP connections per local IP (port stripped), sorted by count then IP.
+title_mk: "Лабораторија за скрипти: TCP конекции по локална IP адреса"
+summary_mk: "Од stdin во стилот на netstat, изброј ги TCP конекциите по локална IP адреса (без порта), подредени по број па по IP."

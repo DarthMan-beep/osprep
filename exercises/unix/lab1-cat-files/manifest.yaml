@@ -1,0 +1,13 @@
+id: unix/lab1-cat-files
+title: "Lab 1: display two files together"
+topic: unix
+kind: bash
+difficulty: 1
+estimatedMinutes: 3
+points: 10
+entrypoint: command.sh
+tags:
+  - cat
+summary: Print the contents of two files one after another.
+title_mk: "Лаб 1: прикажување на две датотеки заедно"
+summary_mk: "Испечатете ја содржината на две датотеки една по друга."

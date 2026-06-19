@@ -1,0 +1,14 @@
+id: unix/lab1-awk-columns
+title: "Lab 1: print selected columns from two files"
+topic: unix
+kind: bash
+difficulty: 2
+estimatedMinutes: 5
+points: 10
+entrypoint: command.sh
+tags:
+  - awk
+  - fields
+summary: Print the index and quiz status for each line across two combined files.
+title_mk: "Лаб 1: печатење на избрани колони од две датотеки"
+summary_mk: "Испечатете ги индексот и статусот на квизот за секоја линија низ две споени датотеки."

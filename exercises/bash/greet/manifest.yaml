@@ -1,0 +1,15 @@
+id: bash/greet
+title: Greeting script
+topic: bash
+kind: bash
+difficulty: 1
+estimatedMinutes: 5
+points: 10
+entrypoint: greet.sh
+tags:
+  - arguments
+  - stderr
+  - exit-codes
+summary: Write a small script that greets a user by name, with proper usage handling.
+title_mk: "Скрипта за поздравување"
+summary_mk: "Напишете мала скрипта што поздравува корисник по име, со правилно ракување со употребата."

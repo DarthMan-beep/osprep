@@ -1,0 +1,19 @@
+id: bash/lab-word-process
+title: "Scripts lab: extract unique words per file"
+topic: bash
+kind: bash
+difficulty: 5
+estimatedMinutes: 30
+points: 10
+entrypoint: script.sh
+lintExclude:
+  - SC2018
+  - SC2019
+tags:
+  - tr
+  - sort
+  - loops
+  - test-operators
+summary: Process .txt files into sorted unique-word .out files and write an aggregate summary.
+title_mk: "Лабораторија за скрипти: извлекување на уникатни зборови по датотека"
+summary_mk: "Обработи ги .txt датотеките во подредени .out датотеки со уникатни зборови и напиши збирен извештај."

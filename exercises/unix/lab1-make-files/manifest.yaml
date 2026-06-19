@@ -1,0 +1,14 @@
+id: unix/lab1-make-files
+title: "Lab 1: create directories and a file"
+topic: unix
+kind: bash
+difficulty: 1
+estimatedMinutes: 4
+points: 10
+entrypoint: command.sh
+tags:
+  - mkdir
+  - touch
+summary: Create two directories and an empty file inside the first one.
+title_mk: "Лаб 1: креирај директориуми и датотека"
+summary_mk: "Креирај два директориума и празна датотека во првиот од нив."
