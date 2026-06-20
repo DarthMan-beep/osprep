@@ -6,9 +6,11 @@ cd "$(dirname "$0")"
 echo ">> building osprep-bash"
 docker build -t osprep-bash:latest ./bash
 
+echo ">> building osprep-java"
+docker build -t osprep-java:latest ./java
+
 # future:
 # docker build -t osprep-docker:latest ./docker
-# docker build -t osprep-java:latest  ./java
 
 echo ">> done"
 docker images | grep '^osprep' || true

@@ -76,6 +76,11 @@ export function exerciseTestsDir(id: string): string {
   return path.join(exerciseDir(id), "tests");
 }
 
+/** Absolute path to a docker exercise's context/ dir (files copied into the build). */
+export function exerciseContextDir(id: string): string {
+  return path.join(exerciseDir(id), "context");
+}
+
 /** Walk the exercises tree and return every manifest (for listing). */
 export async function listExercises(
   locale: Locale = "en",

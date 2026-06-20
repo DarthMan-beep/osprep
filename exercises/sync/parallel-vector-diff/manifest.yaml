@@ -1,0 +1,16 @@
+id: sync/parallel-vector-diff
+title: "Parallel sum of differences"
+topic: sync
+kind: java
+difficulty: 3
+estimatedMinutes: 20
+points: 10
+entrypoint: VectorDiff.java
+tags:
+  - threads
+  - race-condition
+  - parallelism
+  - reduction
+summary: Parallelize Σ|a[i]-b[i]| across threads so the shared total has no lost updates.
+title_mk: "Паралелна сума на разлики"
+summary_mk: "Паралелизирај Σ|a[i]-b[i]| низ нишки така што споделената сума нема изгубени ажурирања."

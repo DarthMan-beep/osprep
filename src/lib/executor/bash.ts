@@ -86,8 +86,13 @@ export async function gradeBash(params: GradeBashParams): Promise<GradeResult> {
   }
 
   const run = await withTempDir("osprep-bash-", async (dir) => {
-    // student entrypoint
-    await fs.writeFile(path.join(dir, params.entrypoint), entryFile.content, "utf8");
+    // student entrypoint — normalize CRLF/CR -> LF so editor/Windows line
+    // endings don't break bash inside the Linux sandbox.
+    await fs.writeFile(
+      path.join(dir, params.entrypoint),
+      entryFile.content.replace(/\r\n?/g, "\n"),
+      "utf8",
+    );
     // exercise tests
     await fs.cp(exerciseTestsDir(params.id), path.join(dir, "tests"), {
       recursive: true,

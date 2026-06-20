@@ -1,0 +1,16 @@
+id: sync/deadlock-transfer
+title: "Deadlock-free money transfer"
+topic: sync
+kind: java
+difficulty: 5
+estimatedMinutes: 25
+points: 10
+entrypoint: Bank.java
+tags:
+  - threads
+  - deadlock
+  - lock-ordering
+  - mutual-exclusion
+summary: Fix two-account transfers so concurrent opposite transfers never deadlock and money is conserved.
+title_mk: "Трансфер на пари без deadlock"
+summary_mk: "Поправи ги трансферите меѓу сметки така што спротивни конкурентни трансфери не запираат (deadlock) и парите се зачувуваат."

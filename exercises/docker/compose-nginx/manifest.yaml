@@ -1,0 +1,25 @@
+id: docker/compose-nginx
+title: "Docker Compose: serve a folder with nginx"
+topic: docker
+kind: docker
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: compose.yaml
+tags:
+  - compose
+  - services
+  - ports
+  - volumes
+summary: Write a compose file that runs nginx, bind-mounts a folder, and publishes it on a host port.
+title_mk: "Docker Compose: сервирај папка со nginx"
+summary_mk: "Напиши compose датотека што стартува nginx, bind-mount-ира папка и ја објавува на порта на домаќинот."
+docker:
+  compose: true
+  checks:
+    - type: http
+      name: "nginx serves html/products.txt on host port 8085"
+      hostPort: 8085
+      path: "/products.txt"
+      status: 200
+      contains: "Fridge"

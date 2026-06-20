@@ -1,0 +1,15 @@
+id: sync/semaphore-limit
+title: "Limit concurrency with a semaphore"
+topic: sync
+kind: java
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: LimitedResource.java
+tags:
+  - threads
+  - semaphore
+  - concurrency-limit
+summary: Use a counting semaphore so at most N threads run the critical section at once.
+title_mk: "Ограничи конкурентност со семафор"
+summary_mk: "Користи броячки семафор за најмногу N нишки да ја извршуваат критичната секција истовремено."

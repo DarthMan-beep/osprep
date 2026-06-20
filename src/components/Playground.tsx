@@ -122,6 +122,11 @@ export function Playground({ locale = "en" }: { locale?: Locale }) {
               height={mode === "commands" ? "220px" : "360px"}
               theme="vs-dark"
               language="shell"
+              onMount={(editor, monaco) =>
+                editor
+                  .getModel()
+                  ?.setEOL(monaco.editor.EndOfLineSequence.LF)
+              }
               value={code}
               onChange={(v) => {
                 const val = v ?? "";

@@ -1,0 +1,16 @@
+id: sync/bounded-buffer
+title: "Producer–consumer bounded buffer"
+topic: sync
+kind: java
+difficulty: 4
+estimatedMinutes: 25
+points: 10
+entrypoint: BoundedBuffer.java
+tags:
+  - threads
+  - wait-notify
+  - producer-consumer
+  - monitor
+summary: Implement a blocking bounded buffer with wait/notify so put blocks when full and take blocks when empty.
+title_mk: "Производител–потрошувач ограничен бафер"
+summary_mk: "Имплементирај блокирачки ограничен бафер со wait/notify: put блокира кога е полн, take кога е празен."

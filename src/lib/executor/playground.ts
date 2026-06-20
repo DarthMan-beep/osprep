@@ -9,6 +9,11 @@ import {
 
 const IMAGE = "osprep-bash:latest";
 
+/** Convert Windows/Mac line endings to LF for the Linux container. */
+function toLF(s: string): string {
+  return s.replace(/\r\n?/g, "\n");
+}
+
 export interface PlaygroundResult {
   output: string; // combined stdout + stderr
   exitCode: number;
@@ -39,10 +44,12 @@ export async function runPlayground(
   }
 
   const run = await withTempDir("osprep-pg-", async (dir) => {
-    await fs.writeFile(path.join(dir, "main.sh"), code, "utf8");
+    // Normalize CRLF/CR -> LF: the script runs in a Linux container, where a
+    // stray '\r' breaks bash (e.g. "syntax error near unexpected token `fi'").
+    await fs.writeFile(path.join(dir, "main.sh"), toLF(code), "utf8");
     let shell = "bash /work/main.sh";
     if (stdin) {
-      await fs.writeFile(path.join(dir, "input.txt"), stdin, "utf8");
+      await fs.writeFile(path.join(dir, "input.txt"), toLF(stdin), "utf8");
       shell = "bash /work/main.sh < /work/input.txt";
     }
     return runContainer({

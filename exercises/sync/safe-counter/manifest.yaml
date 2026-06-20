@@ -1,0 +1,15 @@
+id: sync/safe-counter
+title: "Thread-safe counter"
+topic: sync
+kind: java
+difficulty: 2
+estimatedMinutes: 10
+points: 10
+entrypoint: Counter.java
+tags:
+  - threads
+  - race-condition
+  - synchronized
+summary: Make a shared counter thread-safe so concurrent increments are never lost.
+title_mk: "Безбеден бројач за нишки"
+summary_mk: "Направи го споделениот бројач безбеден за нишки за да не се изгуби ниедно конкурентно зголемување."

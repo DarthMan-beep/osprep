@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { loadExercise } from "@/lib/exercises";
 import { gradeBash } from "@/lib/executor/bash";
+import { gradeJava } from "@/lib/executor/java";
+import { gradeDocker } from "@/lib/executor/dockerfile";
 import type { SubmittedFile } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -45,6 +47,27 @@ export async function POST(req: Request) {
         files: body.files,
         lint: manifest.lint,
         lintExclude: manifest.lintExclude,
+      });
+      return NextResponse.json(result);
+    }
+    case "java": {
+      const result = await gradeJava({
+        id: manifest.id,
+        entrypoint: manifest.entrypoint,
+        points: manifest.points,
+        files: body.files,
+        testClass: manifest.testClass,
+      });
+      return NextResponse.json(result);
+    }
+    case "docker": {
+      const result = await gradeDocker({
+        id: manifest.id,
+        entrypoint: manifest.entrypoint,
+        points: manifest.points,
+        files: body.files,
+        checks: manifest.docker?.checks ?? [],
+        compose: manifest.docker?.compose,
       });
       return NextResponse.json(result);
     }

@@ -12,6 +12,15 @@ const LANG_BY_KIND: Record<string, string> = {
   java: "java",
 };
 
+/** Pick the Monaco language from the file name first, then fall back to kind. */
+function editorLanguage(entrypoint: string, kind: string): string {
+  if (/\.ya?ml$/i.test(entrypoint)) return "yaml";
+  if (/^Dockerfile/i.test(entrypoint)) return "dockerfile";
+  if (/\.java$/i.test(entrypoint)) return "java";
+  if (/\.sh$/i.test(entrypoint)) return "shell";
+  return LANG_BY_KIND[kind] ?? "plaintext";
+}
+
 type SaveState = "idle" | "saving" | "saved";
 
 export function Workbench({
@@ -183,7 +192,10 @@ export function Workbench({
           <Editor
             height="100%"
             theme="vs-dark"
-            language={LANG_BY_KIND[manifest.kind] ?? "plaintext"}
+            language={editorLanguage(manifest.entrypoint, manifest.kind)}
+            onMount={(editor, monaco) =>
+              editor.getModel()?.setEOL(monaco.editor.EndOfLineSequence.LF)
+            }
             value={code}
             onChange={(v) => setCode(v ?? "")}
             options={{

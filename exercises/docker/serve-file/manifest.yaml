@@ -1,0 +1,24 @@
+id: docker/serve-file
+title: "Serve a file over HTTP"
+topic: docker
+kind: docker
+difficulty: 2
+estimatedMinutes: 12
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - EXPOSE
+  - CMD
+  - ports
+summary: Containerize a static file server so a file is reachable over HTTP on a published port.
+title_mk: "Сервирај датотека преку HTTP"
+summary_mk: "Контејнеризирај статичен сервер за датотеки така што датотека е достапна преку HTTP на објавена порта."
+docker:
+  checks:
+    - type: http
+      name: "products.txt is served with HTTP 200"
+      containerPort: 9000
+      path: "/products.txt"
+      status: 200
+      contains: "Fridge"

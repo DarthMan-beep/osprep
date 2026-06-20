@@ -1,0 +1,21 @@
+id: docker/env-config
+title: "Configure a container with ENV"
+topic: docker
+kind: docker
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - ENV
+  - RUN
+  - java
+summary: Compile a Java app in the image and configure its file path via an environment variable.
+title_mk: "Конфигурирај контејнер со ENV"
+summary_mk: "Компилирај Java апликација во сликата и конфигурирај ја патеката до датотеката преку променлива на околината."
+docker:
+  checks:
+    - type: stdout
+      name: "app reads PRODUCT_FILE_PATH and prints the products"
+      contains: "Product Name: Fridge"

@@ -2,6 +2,34 @@
 
 export type ExerciseKind = "bash" | "docker" | "java";
 
+/** How a docker exercise is graded after the student's image is built. */
+export type DockerCheck =
+  | {
+      type: "stdout";
+      name: string;
+      /** assert the container's stdout contains this substring */
+      contains?: string;
+      /** assert the container's stdout equals this exactly (trimmed) */
+      equals?: string;
+      runArgs?: string[]; // extra `docker run` args (e.g. -e KEY=val)
+    }
+  | {
+      type: "http";
+      name: string;
+      containerPort?: number; // build mode: port inside the container (grader maps it)
+      hostPort?: number; // compose mode: host port the student published
+      path?: string; // request path, default "/"
+      status?: number; // expected HTTP status, default 200
+      contains?: string; // expected substring in the response body
+      runArgs?: string[]; // build mode only: extra `docker run` args
+    };
+
+export interface DockerSpec {
+  /** When true, grade by `docker compose up` on the entrypoint compose file. */
+  compose?: boolean;
+  checks: DockerCheck[];
+}
+
 export interface ExerciseManifest {
   id: string; // e.g. "bash/greet"
   title: string;
@@ -25,6 +53,10 @@ export interface ExerciseManifest {
   /** Specific shellcheck codes to ignore for this exercise, e.g. ["SC2018"].
    *  Use when a rule's advice conflicts with the task (not to hide real issues). */
   lintExclude?: string[];
+  /** Java only: the test-driver class the grader runs (default OSPrepTest). */
+  testClass?: string;
+  /** Docker only: how to grade the built image. */
+  docker?: DockerSpec;
 }
 
 export interface ExerciseFile {

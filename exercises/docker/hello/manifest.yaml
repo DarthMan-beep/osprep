@@ -1,0 +1,21 @@
+id: docker/hello
+title: "Your first Dockerfile"
+topic: docker
+kind: docker
+difficulty: 1
+estimatedMinutes: 8
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - FROM
+  - COPY
+  - CMD
+summary: Write a Dockerfile that runs a Python script and prints its output.
+title_mk: "Твојот прв Dockerfile"
+summary_mk: "Напиши Dockerfile што извршува Python скрипта и го печати нејзиниот излез."
+docker:
+  checks:
+    - type: stdout
+      name: "container prints the greeting"
+      contains: "Hello from Docker!"

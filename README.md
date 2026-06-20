@@ -5,8 +5,8 @@ study guides, then solve exercises in a **real sandbox**: you write code in the 
 click **Run & Grade**, and it executes inside a throwaway Docker container and is checked
 against automated tests. Available in **English and Macedonian** (toggle top-right).
 
-Covers: **Unix commands**, **Bash scripting** (Docker and Java synchronization are on the
-roadmap).
+Covers all four practical-exam topics: **Unix commands**, **Bash scripting**,
+**Synchronization** (Java threads), and **Docker** (Dockerfile + Compose).
 
 ---
 
@@ -99,8 +99,15 @@ docker/bash/      # the osprep-bash sandbox image (alpine + bash + shellcheck + 
 > **bats tip:** test bodies run with errexit-like behaviour — `var=$(cmd-that-exits-nonzero)`
 > fails the test; use `run` or append `|| true` when a non-zero exit is expected.
 
+## Grading per topic
+
+- **Bash / Unix** → `osprep-bash` sandbox: `shellcheck` + `bats`.
+- **Synchronization (Java)** → `osprep-java` sandbox: compile + a stress/timeout test driver
+  (lost-update and deadlock detection).
+- **Docker** → builds the student's Dockerfile/compose on the **host** daemon and asserts
+  (stdout, HTTP on a published port, compose up). No extra image — uses Docker itself.
+
 ## Roadmap
 
-- [ ] Docker exercises (`osprep-docker` image: build Dockerfile/compose + run assertions)
-- [ ] Java synchronization (`osprep-java`: JUnit + concurrency stress / deadlock timeout)
 - [ ] Timed exam simulator (multi-topic, scoring, review)
+- [ ] More multi-service Compose exercises
