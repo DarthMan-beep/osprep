@@ -1,0 +1,24 @@
+id: docker/compose-build
+title: "Compose: build from a Dockerfile"
+topic: docker
+kind: docker
+difficulty: 2
+estimatedMinutes: 10
+points: 10
+entrypoint: compose.yaml
+tags:
+  - compose
+  - build
+  - ports
+summary: Have Compose build an image from a provided Dockerfile instead of pulling a prebuilt one.
+title_mk: "Compose: гради од Dockerfile"
+summary_mk: "Натерај Compose да гради слика од даден Dockerfile наместо да повлекува готова."
+docker:
+  compose: true
+  checks:
+    - type: http
+      name: "the built service serves page.html on host port 8087"
+      hostPort: 8087
+      path: "/page.html"
+      status: 200
+      contains: "built by compose"

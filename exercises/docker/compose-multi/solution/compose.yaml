@@ -1,0 +1,13 @@
+services:
+  alpha:
+    image: nginx:alpine
+    ports:
+      - "8088:80"
+    volumes:
+      - ./a:/usr/share/nginx/html
+  beta:
+    image: nginx:alpine
+    ports:
+      - "8089:80"
+    volumes:
+      - ./b:/usr/share/nginx/html

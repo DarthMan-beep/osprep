@@ -1,0 +1,20 @@
+id: docker/build-vs-run
+title: "RUN at build, CMD at run"
+topic: docker
+kind: docker
+difficulty: 2
+estimatedMinutes: 10
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - RUN
+  - CMD
+summary: Create a file during the build with RUN, then print it at start with CMD.
+title_mk: "RUN при градење, CMD при стартување"
+summary_mk: "Создади датотека при градење со RUN, па испечати ја при стартување со CMD."
+docker:
+  checks:
+    - type: stdout
+      name: "container prints the file made at build time"
+      contains: "READY"

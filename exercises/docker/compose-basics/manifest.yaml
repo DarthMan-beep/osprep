@@ -1,0 +1,25 @@
+id: docker/compose-basics
+title: "Compose: just an image and a port"
+topic: docker
+kind: docker
+difficulty: 1
+estimatedMinutes: 8
+points: 10
+entrypoint: compose.yaml
+tags:
+  - compose
+  - services
+  - image
+  - ports
+summary: The smallest possible compose file — one service running a prebuilt image on a published port.
+title_mk: "Compose: само слика и порта"
+summary_mk: "Најмалата можна compose датотека — една услуга што извршува готова слика на објавена порта."
+docker:
+  compose: true
+  checks:
+    - type: http
+      name: "nginx answers on host port 8086"
+      hostPort: 8086
+      path: "/"
+      status: 200
+      contains: "nginx"

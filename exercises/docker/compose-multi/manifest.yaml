@@ -1,0 +1,31 @@
+id: docker/compose-multi
+title: "Compose: more than one service"
+topic: docker
+kind: docker
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: compose.yaml
+tags:
+  - compose
+  - services
+  - ports
+  - volumes
+summary: Define two independent services in one compose file, each serving its own folder on its own port.
+title_mk: "Compose: повеќе од една услуга"
+summary_mk: "Дефинирај две независни услуги во една compose датотека, секоја сервира своја папка на своја порта."
+docker:
+  compose: true
+  checks:
+    - type: http
+      name: "service alpha serves folder a on port 8088"
+      hostPort: 8088
+      path: "/"
+      status: 200
+      contains: "Service A"
+    - type: http
+      name: "service beta serves folder b on port 8089"
+      hostPort: 8089
+      path: "/"
+      status: 200
+      contains: "Service B"

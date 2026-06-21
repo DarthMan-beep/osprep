@@ -1,0 +1,20 @@
+id: docker/concat-files
+title: "Copy two files and join them"
+topic: docker
+kind: docker
+difficulty: 1
+estimatedMinutes: 8
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - COPY
+  - WORKDIR
+summary: Copy two provided files into the image and print them together when it runs.
+title_mk: "Копирај две датотеки и спој ги"
+summary_mk: "Копирај две дадени датотеки во сликата и испечати ги заедно при стартување."
+docker:
+  checks:
+    - type: stdout
+      name: "container prints both files in order"
+      contains: "Welcome to the inventory system"
