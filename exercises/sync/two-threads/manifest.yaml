@@ -1,0 +1,15 @@
+id: sync/two-threads
+title: "Two threads working together"
+topic: sync
+kind: java
+difficulty: 2
+estimatedMinutes: 12
+points: 10
+entrypoint: Launcher.java
+tags:
+  - threads
+  - join
+  - parallelism
+summary: Split a job across two threads, wait for both, and combine their partial results.
+title_mk: "Две нишки работат заедно"
+summary_mk: "Подели задача на две нишки, чекај ги двете, и комбинирај ги парцијалните резултати."

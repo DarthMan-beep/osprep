@@ -1,0 +1,15 @@
+id: sync/first-thread
+title: "Your first thread"
+topic: sync
+kind: java
+difficulty: 1
+estimatedMinutes: 8
+points: 10
+entrypoint: Worker.java
+tags:
+  - threads
+  - Thread
+  - run
+summary: Write the body of a thread — the run() method — that computes a value.
+title_mk: "Твојата прва нишка"
+summary_mk: "Напиши го телото на нишка — методот run() — што пресметува вредност."

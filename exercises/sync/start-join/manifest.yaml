@@ -1,0 +1,15 @@
+id: sync/start-join
+title: "Start a thread and wait for it"
+topic: sync
+kind: java
+difficulty: 1
+estimatedMinutes: 8
+points: 10
+entrypoint: Launcher.java
+tags:
+  - threads
+  - start
+  - join
+summary: Run a worker on a new thread, then use join() to wait before reading its result.
+title_mk: "Стартувај нишка и чекај ја"
+summary_mk: "Изврши работник на нова нишка, па со join() чекај пред да го прочиташ резултатот."

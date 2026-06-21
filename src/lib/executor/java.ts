@@ -1,6 +1,6 @@
 import path from "node:path";
 import { promises as fs } from "node:fs";
-import { exerciseTestsDir } from "../exercises";
+import { exerciseTestsDir, exerciseContextDir } from "../exercises";
 import type { GradeResult, SubmittedFile, TestCase } from "../types";
 import {
   assertDockerUp,
@@ -85,6 +85,18 @@ export async function gradeJava(params: GradeJavaParams): Promise<GradeResult> {
     const testsDir = exerciseTestsDir(params.id);
     for (const name of await fs.readdir(testsDir)) {
       await fs.copyFile(path.join(testsDir, name), path.join(dir, name));
+    }
+    // copy any read-only helper files from context/ (e.g. a provided Worker class)
+    const ctxDir = exerciseContextDir(params.id);
+    try {
+      for (const name of await fs.readdir(ctxDir)) {
+        const full = path.join(ctxDir, name);
+        if ((await fs.stat(full)).isFile()) {
+          await fs.copyFile(full, path.join(dir, name));
+        }
+      }
+    } catch {
+      /* no context dir — fine */
     }
     return runContainer({
       image: IMAGE,
