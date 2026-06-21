@@ -1,2 +1,1 @@
-# Define an nginx service that serves ./html on host port 8085.
-services:
+# Write your compose.yaml here — start from scratch.

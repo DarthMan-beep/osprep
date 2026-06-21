@@ -56,6 +56,30 @@ async function readDirFiles(dir: string): Promise<ExerciseFile[]> {
   return files;
 }
 
+/** Read a directory tree into ExerciseFiles whose names are relative paths. */
+async function readDirFilesRecursive(
+  dir: string,
+  prefix = "",
+): Promise<ExerciseFile[]> {
+  let entries: import("node:fs").Dirent[];
+  try {
+    entries = await fs.readdir(dir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  const out: ExerciseFile[] = [];
+  for (const e of entries) {
+    const rel = prefix ? `${prefix}/${e.name}` : e.name;
+    const full = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      out.push(...(await readDirFilesRecursive(full, rel)));
+    } else if (e.isFile()) {
+      out.push({ name: rel, content: await fs.readFile(full, "utf8") });
+    }
+  }
+  return out.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 export async function loadExercise(
   id: string,
   locale: Locale = "en",
@@ -68,7 +92,8 @@ export async function loadExercise(
   );
   const problemMarkdown = await readProblem(dir, locale);
   const starterFiles = await readDirFiles(path.join(dir, "starter"));
-  return { manifest, problemMarkdown, starterFiles };
+  const providedFiles = await readDirFilesRecursive(path.join(dir, "context"));
+  return { manifest, problemMarkdown, starterFiles, providedFiles };
 }
 
 /** Absolute path to an exercise's tests/ directory (server-side grading only). */

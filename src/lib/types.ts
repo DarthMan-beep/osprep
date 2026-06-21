@@ -69,6 +69,8 @@ export interface Exercise {
   manifest: ExerciseManifest;
   problemMarkdown: string;
   starterFiles: ExerciseFile[];
+  /** Read-only files from the exercise's context/ dir, shown to the student. */
+  providedFiles: ExerciseFile[];
 }
 
 export interface SubmittedFile {

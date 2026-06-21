@@ -1,0 +1,20 @@
+id: docker/python-app
+title: "Ship the whole app"
+topic: docker
+kind: docker
+difficulty: 2
+estimatedMinutes: 10
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - COPY
+  - WORKDIR
+summary: Containerize a small Python app that's split across more than one file.
+title_mk: "Испорачај ја целата апликација"
+summary_mk: "Контейнеризирај мала Python апликација поделена во повеќе од една датотека."
+docker:
+  checks:
+    - type: stdout
+      name: "container prints the computed total"
+      contains: "Total inventory value: 12000"

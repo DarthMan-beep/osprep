@@ -31,6 +31,7 @@ const STRINGS: Record<Locale, Dict> = {
     "wb.min": "min",
     "wb.pts": "pts",
     "wb.allTopics": "← all topics",
+    "wb.provided": "Provided files (read-only)",
     "res.spinning": "Spinning up sandbox container…",
     "res.pressRun":
       "Press Run & Grade to execute your solution in a sandbox and check it against the tests.",
@@ -79,6 +80,7 @@ const STRINGS: Record<Locale, Dict> = {
     "wb.min": "мин",
     "wb.pts": "поени",
     "wb.allTopics": "← сите теми",
+    "wb.provided": "Дадени датотеки (само за читање)",
     "res.spinning": "Се подига контејнер-песочниче…",
     "res.pressRun":
       "Притиснете Изврши и оцени за да го извршите решението во песочниче и да го проверите со тестовите.",

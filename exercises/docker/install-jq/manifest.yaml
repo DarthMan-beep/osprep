@@ -1,0 +1,20 @@
+id: docker/install-jq
+title: "The missing tool"
+topic: docker
+kind: docker
+difficulty: 3
+estimatedMinutes: 12
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - RUN
+  - dependencies
+summary: Containerize a script that depends on a command-line tool a slim base image doesn't ship.
+title_mk: "Алатката што недостасува"
+summary_mk: "Контейнеризирај скрипта што зависи од алатка што slim базната слика не ја носи."
+docker:
+  checks:
+    - type: stdout
+      name: "container prints the product name from data.json"
+      contains: "Fridge"

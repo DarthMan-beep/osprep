@@ -13,6 +13,7 @@ const LANGS = [
   "shellsession", // ```console blocks (the $-prompt sessions)
   "dockerfile",
   "java",
+  "python",
   "yaml",
   "json",
   "diff",

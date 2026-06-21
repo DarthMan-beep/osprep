@@ -26,12 +26,14 @@ type SaveState = "idle" | "saving" | "saved";
 export function Workbench({
   exercise,
   problemHtml,
+  providedHtml = "",
   savedCode,
   alreadySolved,
   locale = "en",
 }: {
   exercise: Exercise;
   problemHtml: string;
+  providedHtml?: string;
   savedCode?: string;
   alreadySolved?: boolean;
   locale?: Locale;
@@ -149,6 +151,18 @@ export function Workbench({
           className="prose prose-invert prose-sm max-w-none prose-code:text-amber-300 prose-code:before:content-none prose-code:after:content-none"
           dangerouslySetInnerHTML={{ __html: problemHtml }}
         />
+
+        {providedHtml && (
+          <section className="mt-6 border-t border-neutral-800 pt-4">
+            <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              {t(locale, "wb.provided")}
+            </h3>
+            <article
+              className="prose prose-invert prose-sm max-w-none prose-code:text-amber-300 prose-code:before:content-none prose-code:after:content-none prose-h5:mb-1 prose-h5:mt-3 prose-h5:font-mono prose-h5:text-neutral-300"
+              dangerouslySetInnerHTML={{ __html: providedHtml }}
+            />
+          </section>
+        )}
       </section>
 
       {/* Editor + results */}

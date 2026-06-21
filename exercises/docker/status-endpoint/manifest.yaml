@@ -1,0 +1,24 @@
+id: docker/status-endpoint
+title: "Bring the service up"
+topic: docker
+kind: docker
+difficulty: 3
+estimatedMinutes: 15
+points: 10
+entrypoint: Dockerfile
+tags:
+  - dockerfile
+  - CMD
+  - ports
+  - http
+summary: Containerize a small HTTP service so its health endpoint answers — read the code to find the port.
+title_mk: "Подигни ја услугата"
+summary_mk: "Контейнеризирај мала HTTP услуга така што нејзиниот health endpoint одговара — прочитај го кодот за да ја најдеш портата."
+docker:
+  checks:
+    - type: http
+      name: "GET /health returns 200 'healthy'"
+      containerPort: 8000
+      path: "/health"
+      status: 200
+      contains: "healthy"
